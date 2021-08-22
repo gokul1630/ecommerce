@@ -1,0 +1,36 @@
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+.details-img {
+  flex: 1 1 20rem;
+}
+.products-description {
+  text-align: justify;
+  margin: 25px;
+  flex: 1 1 20rem;
+}
+.details-img img {
+  margin: 25px;
+  width: 70%;
+  height: 70%;
+}
+.products-description > .product-name {
+  font-size: 2rem;
+  color: blue;
+}
+.products-description > .product-price {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.products-description > .description {
+  font-size: 1.2rem;
+}
+.description > span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
