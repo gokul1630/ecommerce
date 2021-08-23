@@ -5,7 +5,7 @@ import { UPDATE_PROFILE } from '../constants'
 import { selector } from '../features/redux/Slicers'
 
 const UserContainer = () => {
-  const [user, setUser] = useState({ name: '', email: '', password: '' })
+  const [user, setUser] = useState({ user: '', email: '', password: '' })
   const dispatch = useDispatch()
   const state = useSelector(selector)
 
@@ -17,7 +17,7 @@ const UserContainer = () => {
   useEffect(() => {
     const data = localStorage.getItem('user')
     const user = JSON.parse(data)
-    setUser({ name: user.user, email: user.email })
+    setUser({ user: user.user, email: user.email })
   }, [])
   return (
     <User

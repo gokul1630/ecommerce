@@ -9,12 +9,12 @@ const User = (props) => {
   return (
     <div className="forms">
       <Form className="bs-form" onSubmit={submit}>
-        {edit ? null : <h2>Hello {user.name}</h2>}
+        {edit ? null : <h2>Hello {user.user}</h2>}
         <Form.Group className="mb-1">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            value={user.name || ''}
-            onChange={(e) => setUser({ ...user, name: e.target.value })}
+            value={user.user || ''}
+            onChange={(e) => setUser({ ...user, user: e.target.value })}
             type="text"
             placeholder="Enter Name"
             required
