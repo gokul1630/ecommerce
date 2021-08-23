@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BACKEND_URL } from '../constants'
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
 
 const client = async (endPoint, { ...configs }) => {
   let data = localStorage.getItem('token')
