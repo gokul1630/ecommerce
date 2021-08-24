@@ -9,13 +9,17 @@ import {
   SIGN_UP,
   UPDATE_PROFILE,
   UPDATE_QUANTITY,
+  UPLOAD_IMAGE
 } from '../../constants'
+import { storage } from '../../firebase/firebaseConfig'
 import client from '../../utils/client'
 import {
   setCartItems,
   setEditUser,
   setProduct,
   setProducts,
+  setProgress,
+  setShowModal
 } from '../redux/Slicers'
 
 function* fetchProducts() {
@@ -143,6 +147,45 @@ function* updateProfile(payload) {
   }
 }
 
+function* uploadProduct(payload) {
+  try {
+    if (payload.image) {
+      let imageRef = yield storage.ref().child(payload.image.name)
+      let pro = imageRef.put(payload.image)
+      pro.on(
+        'state_changed',
+        function (snap) {
+          let imageProgress = Math.round(
+            (snap.bytesTransferred / snap.totalBytes) * 100
+          )
+          payload.dispatch(setShowModal(true))
+          payload.dispatch(setProgress(imageProgress))
+        },
+        (error) => console.log(error),
+        () => {
+          imageRef.getDownloadURL().then((imageUrl) => {
+            payload.productData.imageLink = imageUrl
+            const data = {
+              url: '/product/addProducts',
+              configs: {
+                method: 'PUT',
+                data: payload.productData,
+              },
+            }
+            apiCall(data)
+            payload.dispatch(setShowModal(false))
+            payload.dispatch(setProgress(0))
+          })
+        }
+      )
+    } else {
+      alert('Please select a image')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 function* userWatcher() {
   yield takeLatest(SIGN_IN, signIn)
   yield takeLatest(SIGN_UP, signUp)
@@ -151,6 +194,7 @@ function* userWatcher() {
 function* productWatcher() {
   yield takeLatest(FETCH_PRODUCTS, fetchProducts)
   yield takeLatest(FETCH_PRODUCT, fetchProduct)
+  yield takeLatest(UPLOAD_IMAGE, uploadProduct)
 }
 
 function* cartWatcher() {

@@ -10,7 +10,7 @@
 }
 
 .cart-img {
-  flex: 1;
+  flex: 1 0 400px;
   margin: 20px;
   max-width: 200px;
   max-height: 200px;
@@ -22,7 +22,7 @@
 }
 .cart-description {
   margin: 20px;
-  flex: 1;
+  flex: 1 0 170px;
   text-align: justify;
 }
 

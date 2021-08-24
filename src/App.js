@@ -4,6 +4,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import CartScreen from './Components/CartScreen'
 import Loader from './Components/Loader'
 import NavBar from './Components/NavBar'
+import DashboardContainer from './container/Dashboard'
 import HomeContainer from './container/Home'
 import LoginContainer from './container/Login'
 import ProductPageContainer from './container/ProductPage'
@@ -40,6 +41,11 @@ function App(props) {
           ></NavRoute>
           <NavRoute exact path="/cart" component={CartScreen}></NavRoute>
           <NavRoute exact path="/user" component={UserContainer}></NavRoute>
+          <NavRoute
+            exact
+            path="/dashboard"
+            component={DashboardContainer}
+          ></NavRoute>
         </Switch>
       </Provider>
     </HashRouter>

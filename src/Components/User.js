@@ -70,6 +70,14 @@ const User = (props) => {
             >
               Logout
             </Button>
+            <Button
+              variant="primary"
+              onClick={(e) => {
+                history.push('/dashboard')
+              }}
+            >
+              Go To DashBoard
+            </Button>
           </>
         )}
       </Form>

@@ -7,6 +7,8 @@ const EcomSlice = createSlice({
     product: [],
     cart: [],
     editUser: false,
+    progress: 0,
+    showModal: false,
   },
   reducers: {
     setProducts: (state, action) => {
@@ -21,11 +23,23 @@ const EcomSlice = createSlice({
     setEditUser: (state, action) => {
       state.editUser = action.payload
     },
+    setProgress: (state, action) => {
+      state.progress = action.payload
+    },
+    setShowModal: (state, action) => {
+      state.showModal = action.payload
+    },
   },
 })
 
-export const { setProducts, setCartItems, setProduct, setEditUser } =
-  EcomSlice.actions
+export const {
+  setProducts,
+  setCartItems,
+  setProduct,
+  setEditUser,
+  setProgress,
+  setShowModal,
+} = EcomSlice.actions
 
 export const selector = (state) => state
 
