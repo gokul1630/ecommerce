@@ -20,6 +20,9 @@ function ProductScreen() {
           </div>
           <div className="products-description">
             <Typography className="product-name">{item.name}</Typography>
+            <Typography variant="h6" className="product-brand">
+              {item.brand}
+            </Typography>
             <Typography className="product-price">₹{item.price}</Typography>
             <Button
               className="product-btn"
