@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import CartScreen from './Components/CartScreen'
 import Loader from './Components/Loader'
 import NavBar from './Components/NavBar'
@@ -17,12 +17,17 @@ function App(props) {
     <Route
       exact={exact}
       path={path}
-      render={(props) => (
-        <div>
-          <NavBar />
-          <Component {...props} />
-        </div>
-      )}
+      render={(props) => {
+        const user = localStorage.getItem('user')
+        return user ? (
+          <>
+            <NavBar />
+            <Component {...props} />
+          </>
+        ) : (
+          <Redirect to="/login" />
+        )
+      }}
     />
   )
 
