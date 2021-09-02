@@ -36,16 +36,16 @@ function App(props) {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Loader}></Route>
-          <Route exact path="/login" component={LoginContainer}></Route>
-          <Route exact path="/signup" component={SignUpContainer}></Route>
-          <NavRoute exact path="/home" component={HomeContainer}></NavRoute>
+          <Route path="/login" component={LoginContainer}></Route>
+          <Route path="/signup" component={SignUpContainer}></Route>
+          <NavRoute path="/home" component={HomeContainer}></NavRoute>
           <NavRoute
             exact
             path="/product/:id"
             component={ProductPageContainer}
           ></NavRoute>
-          <NavRoute exact path="/cart" component={CartScreen}></NavRoute>
-          <NavRoute exact path="/user" component={UserContainer}></NavRoute>
+          <NavRoute path="/cart" component={CartScreen}></NavRoute>
+          <NavRoute path="/user" component={UserContainer}></NavRoute>
           <NavRoute
             exact
             path="/dashboard"
