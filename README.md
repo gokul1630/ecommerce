@@ -2,6 +2,8 @@
 
 ## Ecommerce App using MERN Stack
 [![CodeFactor](https://www.codefactor.io/repository/github/gokul1630/ecommerce/badge)](https://www.codefactor.io/repository/github/gokul1630/ecommerce)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/gokul1630/ecommerce.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gokul1630/ecommerce/context:javascript)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/gokul1630/ecommerce.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gokul1630/ecommerce/alerts/)
 
 ## This is Frontend Repo build with React, <a href='https://github.com/gokul1630/ecommerce_backend' target='__blank'>click here</a> for backend repo 
 
