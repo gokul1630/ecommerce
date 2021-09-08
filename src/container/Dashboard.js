@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Dashboard from '../Components/Dashboard'
 import { UPLOAD_IMAGE } from '../constants'
-import { selector } from '../features/redux/Slicers'
 
 const DashboardContainer = () => {
   const dispatch = useDispatch()
-  const state = useSelector(selector)
   const [image, setImage] = useState(null)
   const [productData, setProductData] = useState({
     name: '',
