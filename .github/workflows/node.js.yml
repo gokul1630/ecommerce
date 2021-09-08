@@ -1,4 +1,4 @@
-name: build and deploy ecommerce
+name: build
 
 on:
   push:
