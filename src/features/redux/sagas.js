@@ -1,4 +1,6 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage'
+import { END, eventChannel } from '@redux-saga/core'
+import { all, call, put, take, takeLatest } from 'redux-saga/effects'
 import {
   ADD_CART_ITEM,
   DELETE_CART_ITEM,
@@ -150,34 +152,45 @@ function* updateProfile(payload) {
 function* uploadProduct(payload) {
   try {
     if (payload.image) {
-      let imageRef = yield storage.ref().child(payload.image.name)
-      let pro = imageRef.put(payload.image)
-      pro.on(
-        'state_changed',
-        function (snap) {
-          let imageProgress = Math.round(
-            (snap.bytesTransferred / snap.totalBytes) * 100
-          )
-          payload.dispatch(setShowModal(true))
-          payload.dispatch(setProgress(imageProgress))
-        },
-        (error) => console.log(error),
-        () => {
-          imageRef.getDownloadURL().then((imageUrl) => {
-            payload.productData.imageLink = imageUrl
-            const data = {
-              url: '/product/addProducts',
-              configs: {
-                method: 'PUT',
-                data: payload.productData,
-              },
-            }
-            apiCall(data)
-            payload.dispatch(setShowModal(false))
-            payload.dispatch(setProgress(0))
-          })
+      const storageRef = ref(storage, payload.image.name)
+      const uploadTask = uploadBytesResumable(storageRef, payload.image)
+      const channel = eventChannel((emitter) => {
+        uploadTask.on(
+          'state_changed',
+          (snap) => {
+            let fileProgress = Math.round(
+              (snap.bytesTransferred / snap.totalBytes) * 100
+            )
+            emitter({ fileProgress })
+          },
+          (error) => {
+            console.log(error)
+            emitter(END)
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((imageUrl) => {
+              payload.productData.imageLink = imageUrl
+              const data = {
+                url: '/product/addProducts',
+                configs: {
+                  method: 'PUT',
+                  data: payload.productData,
+                },
+              }
+              apiCall(data)
+              emitter({ fileProgress: 0 })
+            })
+          }
+        )
+        return (e) => {
+          console.log(e)
         }
-      )
+      })
+      while (true) {
+        const { fileProgress } = yield take(channel)
+        yield put(setShowModal(fileProgress > 0 ? true : false))
+        yield put(setProgress(fileProgress))
+      }
     } else {
       alert('Please select a image')
     }
