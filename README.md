@@ -1,6 +1,7 @@
 # Ecommerce Frontend
 
 ## Ecommerce App using MERN Stack
+![workflow](https://github.com/gokul1630/ecommerce/actions/workflows/node.js.yml/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/gokul1630/ecommerce/badge)](https://www.codefactor.io/repository/github/gokul1630/ecommerce)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/gokul1630/ecommerce.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gokul1630/ecommerce/context:javascript)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/gokul1630/ecommerce.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gokul1630/ecommerce/alerts/)
