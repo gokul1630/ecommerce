@@ -1,7 +1,6 @@
 import {
   AppBar,
   Badge,
-  Button,
   IconButton,
   Toolbar,
   Typography,
@@ -30,11 +29,11 @@ function NavBar(props) {
           >
             WatchCenter
           </Typography>
-          <Button color="inherit" onClick={() => history.push('/cart')}>
+          <IconButton color="inherit" onClick={() => history.push('/cart')}>
             <Badge badgeContent={state.cart.length} color="secondary">
               <ShoppingCartIcon />
             </Badge>
-          </Button>
+          </IconButton>
           <IconButton color="inherit" onClick={() => history.push('/user')}>
             <AccountCircle />
           </IconButton>
