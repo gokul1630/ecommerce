@@ -11,7 +11,7 @@ import {
   SIGN_UP,
   UPDATE_PROFILE,
   UPDATE_QUANTITY,
-  UPLOAD_IMAGE
+  UPLOAD_IMAGE,
 } from '../../constants'
 import { storage } from '../../firebase/firebaseConfig'
 import client from '../../utils/client'
@@ -20,7 +20,7 @@ import {
   setEditUser,
   setProduct,
   setProducts,
-  setProgress
+  setProgress,
 } from '../redux/Slicers'
 
 function* fetchProducts() {
