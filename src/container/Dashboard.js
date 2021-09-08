@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Modal, ProgressBar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Dashboard from '../Components/Dashboard'
 import { UPLOAD_IMAGE } from '../constants'
-import { selector, setShowModal } from '../features/redux/Slicers'
+import { selector } from '../features/redux/Slicers'
 
 const DashboardContainer = () => {
   const dispatch = useDispatch()
@@ -38,22 +37,12 @@ const DashboardContainer = () => {
   }
 
   return (
-    <>
-      <Modal
-        backdrop="static"
-        centered
-        show={state.showModal}
-        onHide={() => dispatch(setShowModal(false))}
-      >
-        <ProgressBar animated now={state.progress} label={state.progress} />
-      </Modal>
-      <Dashboard
-        pickImage={pickImage}
-        uploadProduct={uploadProduct}
-        productData={productData}
-        setProductData={setProductData}
-      />
-    </>
+    <Dashboard
+      pickImage={pickImage}
+      uploadProduct={uploadProduct}
+      productData={productData}
+      setProductData={setProductData}
+    />
   )
 }
 

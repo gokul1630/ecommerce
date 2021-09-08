@@ -20,8 +20,7 @@ import {
   setEditUser,
   setProduct,
   setProducts,
-  setProgress,
-  setShowModal
+  setProgress
 } from '../redux/Slicers'
 
 function* fetchProducts() {
@@ -188,7 +187,6 @@ function* uploadProduct(payload) {
       })
       while (true) {
         const { fileProgress } = yield take(channel)
-        yield put(setShowModal(fileProgress > 0 ? true : false))
         yield put(setProgress(fileProgress))
       }
     } else {

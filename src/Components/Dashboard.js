@@ -1,8 +1,13 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { selector } from '../features/redux/Slicers'
+import CircularProgressLabel from './CircularProgressLabel'
 
 const Dashboard = (props) => {
   const { pickImage, uploadProduct, productData, setProductData } = props
+  const state = useSelector(selector)
+
   return (
     <div className="forms">
       <Form className="bs-form" onSubmit={uploadProduct}>
@@ -72,7 +77,11 @@ const Dashboard = (props) => {
             required
           />
         </Form.Group>
-        <Button type="submit">Upload Product</Button>
+        {state.progress ? (
+          <CircularProgressLabel variant="determinate" value={state.progress} />
+        ) : (
+          <Button type="submit">Upload Product</Button>
+        )}
       </Form>
     </div>
   )
